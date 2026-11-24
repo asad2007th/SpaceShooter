@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <h1>SPACE SHOOTER</h1>
+            <p>Protect your ship. Shoot the incoming enemies!</p>
+        </header>
+
+        <section id="game" class="game" aria-label="Space shooter game">
+            <div id="start-screen" class="screen">
+                <h2>Ready, Pilot?</h2>
+                <p>Move with the ← and → arrow keys.</p>
+                <p>Your ship fires automatically.</p>
+                <p>Destroy enemies to earn 10 points.</p>
+                <p class="high-score-line">High score: <span id="start-high-score">0</span></p>
+                <button id="start-button" type="button">Start Game</button>
+            </div>
+
+            <div id="hud" class="hud hidden">
+                <span>Score: <strong id="score">0</strong></span>
+                <span>Lives: <strong id="lives">♥ ♥ ♥</strong></span>
+                <span>High: <strong id="hud-high-score">0</strong></span>
+                <span id="pause-label" class="pause-label hidden">PAUSED</span>
+            </div>
+
+            <div id="play-area" class="play-area hidden" aria-label="Playing area">
+                <div id="player" class="player sprite" data-id="player" aria-label="Player ship">
+                    <span class="ship-window"></span>
+                </div>
+            </div>
+
+            <div id="game-over-screen" class="screen hidden">
+                <h2>GAME OVER</h2>
+                <p>Your final score: <strong id="final-score">0</strong></p>
+                <p>High score: <strong id="over-high-score">0</strong></p>
+                <button id="restart-button" type="button">Play Again</button>
+            </div>
+        </section>
+
+        <footer class="help">
+            <p><strong>Controls:</strong> ← / → move · P pause/resume · Destroy enemies to score</p>
+        </footer>
+    </main>
+</body>
+</html>

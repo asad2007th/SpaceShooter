@@ -1,0 +1,255 @@
+/* ---------- General page styles ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #eef5ff;
+    background: #050816;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    width: min(960px, 96%);
+    padding: 18px 0;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.page-header h1 {
+    margin: 0 0 8px;
+    letter-spacing: 5px;
+    color: #6ee7ff;
+}
+
+.page-header p,
+.help p {
+    color: #b8c7e6;
+}
+
+.game {
+    position: relative;
+    height: 600px;
+    max-height: 72vh;
+    min-height: 420px;
+    overflow: hidden;
+    border: 2px solid #3b82f6;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 20% 25%, #ffffff 1px, transparent 2px),
+        radial-gradient(circle at 75% 35%, #8be9fd 1px, transparent 2px),
+        radial-gradient(circle at 48% 70%, #ffffff 1px, transparent 2px),
+        radial-gradient(circle at 85% 85%, #ffffff 1px, transparent 2px),
+        linear-gradient(#07152f, #090b20 70%, #11102c);
+    background-size: 150px 140px, 210px 190px, 180px 160px, 230px 200px, auto;
+    box-shadow: 0 0 30px rgb(59 130 246 / 20%);
+}
+
+.screen {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    background: rgb(3 8 25 / 88%);
+}
+
+.hidden {
+    display: none;
+}
+
+.screen h2 {
+    margin: 0 0 16px;
+    color: #6ee7ff;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: 3px;
+}
+
+.screen p {
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+.high-score-line {
+    margin-top: 14px !important;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    border: 0;
+    border-radius: 8px;
+    color: #04101e;
+    background: #6ee7ff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 160ms ease, background-color 160ms ease;
+}
+
+button:hover {
+    background: #a5f3fc;
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: rgb(3 8 25 / 75%);
+    font-size: 0.95rem;
+}
+
+.hud strong {
+    color: #6ee7ff;
+}
+
+.pause-label {
+    color: #facc15;
+    font-weight: bold;
+}
+
+/* ---------- Play area and sprites ---------- */
+.play-area {
+    position: absolute;
+    inset: 46px 0 0;
+    overflow: hidden;
+}
+
+.sprite {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+}
+
+.player {
+    bottom: 18px;
+    left: 0;
+    width: 44px;
+    height: 42px;
+    background: #6ee7ff;
+    clip-path: polygon(50% 0, 100% 100%, 50% 78%, 0 100%);
+    filter: drop-shadow(0 0 8px #22d3ee);
+}
+
+.ship-window {
+    position: absolute;
+    left: 17px;
+    top: 19px;
+    width: 10px;
+    height: 9px;
+    border-radius: 50%;
+    background: #075985;
+}
+
+.bullet {
+    position: absolute;
+    width: 6px;
+    height: 16px;
+    border-radius: 4px;
+    background: #fde047;
+    box-shadow: 0 0 8px #facc15;
+}
+
+.enemy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fb7185;
+    border: 2px solid #fecdd3;
+    border-radius: 45% 45% 30% 30%;
+    box-shadow: 0 0 8px rgb(251 113 133 / 75%);
+}
+
+.enemy::before,
+.enemy::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #450a0a;
+}
+
+.enemy::before {
+    left: 7px;
+}
+
+.enemy::after {
+    right: 7px;
+}
+
+.explosion {
+    animation: explode 260ms ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.7); opacity: 1; filter: brightness(2); }
+    100% { transform: scale(2.1); opacity: 0; filter: brightness(3); }
+}
+
+.blink {
+    animation: blink 150ms steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to { opacity: 0.25; }
+}
+
+.help {
+    text-align: center;
+    font-size: 0.92rem;
+    margin-top: 10px;
+}
+
+/* ---------- Responsive layout ---------- */
+@media (max-width: 768px) {
+    .page {
+        width: 98%;
+    }
+
+    .game {
+        height: 560px;
+        max-height: 75vh;
+    }
+
+    .hud {
+        gap: 6px;
+        padding: 8px;
+        font-size: 0.78rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+    }
+}
